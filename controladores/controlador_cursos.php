@@ -2,13 +2,13 @@
 
 require_once("./modelos/Cursos.php");
 require_once("./modelos/Profesores.php");
-require_once("./conexion.php");
+require_once(__DIR__ . "/../conexion.php");
 
 class ControladorCursos {
 
     public function inicio()
     {
-        $conexion = BD::crearInstancia();
+        $conexion = \BD::crearInstancia();
         $consulta = $conexion->prepare("SELECT * FROM cursos ORDER BY nombre_curso");
         $consulta->execute();
 
@@ -22,7 +22,7 @@ class ControladorCursos {
 
     public function crear()
     {
-        $conexion = BD::crearInstancia();
+        $conexion = \BD::crearInstancia();
 
 
         $consulta = $conexion->prepare("SELECT * FROM profesores ORDER BY apellidos");
@@ -41,7 +41,7 @@ class ControladorCursos {
 
     public function editar()
     {
-        $conexion = BD::crearInstancia();
+        $conexion = \BD::crearInstancia();
 
         // Traer profesores
         $consulta = $conexion->prepare("SELECT * FROM profesores ORDER BY apellidos");

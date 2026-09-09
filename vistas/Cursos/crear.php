@@ -20,6 +20,7 @@
             <label>Profesor</label>
             <select name="id_profesor" class="form-control" required>
                 <option value="">Seleccione un profesor</option>
+                <?php $listaProfesores = $listaProfesores ?? []; ?>
                 <?php foreach ($listaProfesores as $profesor) { ?>
                     <option value="<?php echo $profesor['id']; ?>">
                         <?php echo $profesor['nombres'] . ' ' . $profesor['apellidos']; ?>
