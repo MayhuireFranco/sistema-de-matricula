@@ -9,21 +9,21 @@
     <div class="container mt-5">
     <h2>Editar profesor</h2>
     <form method="POST" action="?controlador=profesores&accion=editar" id="formProfesor">
-        <input type="hidden" name="id" value="<?php echo $profesor->getId(); ?>">
+        <input type="hidden" name="id" value="<?php echo isset($profesor) ? $profesor->getId() : ''; ?>">
         <div class="mb-3">
             <label>Nombres</label>
             <input type="text" name="nombres" class="form-control"
-                   value="<?php echo $profesor->getNombres(); ?>">
+                   value="<?php echo isset($profesor) ? $profesor->getNombres() : ''; ?>">
         </div>
         <div class="mb-3">
             <label>Apellidos</label>
             <input type="text" name="apellidos" class="form-control"
-                   value="<?php echo $profesor->getApellidos(); ?>">
+                   value="<?php echo isset($profesor) ? $profesor->getApellidos() : ''; ?>">
         </div>
         <div class="mb-3">
             <label>Especialidad</label>
             <input type="text" name="especialidad" class="form-control"
-                   value="<?php echo $profesor->getEspecialidad(); ?>">
+                   value="<?php echo isset($profesor) ? $profesor->getEspecialidad() : ''; ?>">
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
