@@ -13,7 +13,7 @@
         </thead>
         <tbody>
  
-        <?php foreach ($listaMatriculas as $matricula) { ?>
+        <?php foreach (($listaMatriculas ?? []) as $matricula) { ?>
                 <tr>
                     <td><?php echo $matricula->getId(); ?></td>
                     <td><?php echo $matricula->getNombreEstudiante(); ?></td>
