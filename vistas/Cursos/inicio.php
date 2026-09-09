@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($listaCursos as $curso) { ?>
+        <?php foreach (($listaCursos ?? []) as $curso) { ?>
             <tr>
                 <td><?php echo $curso->getId(); ?></td>
                 <td><?php echo $curso->getNombreCurso(); ?></td>
