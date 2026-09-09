@@ -1,5 +1,9 @@
 <?php
- 
+    require_once __DIR__ . "/../modelos/Estudiantes.php";
+    require_once __DIR__ . "/../modelos/Profesores.php";
+    require_once __DIR__ . "/../modelos/Cursos.php";
+    require_once __DIR__ . "/../modelos/Matriculas.php";
+    require_once __DIR__ . "/../conexion.php";
 class ControladorPaginas {
     public function inicio() {
         require_once("./vistas/paginas/inicio.php");
