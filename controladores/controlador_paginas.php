@@ -8,6 +8,15 @@ class ControladorPaginas {
         require_once("./vistas/paginas/nosotros.php");
     }
     public function profesores() {
-        require_once("./vistas/paginas/profesores");
+        require_once("./vistas/paginas/profesores.php");
+    }
+    public function cursos() {
+        require_once("./vistas/paginas/cursos.php");
+    }
+    public function estudiantes() {
+        require_once("./vistas/paginas/estudiantes.php");
+    }
+    public function matricula() {
+        require_once("./vistas/paginas/matricula.php");
     }
 }
