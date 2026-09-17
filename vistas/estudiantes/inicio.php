@@ -24,7 +24,7 @@
 
 
     <a
-        href="controlador_estudiantes.php?accion=crear"
+        href="?controlador=estudiantes&accion=crear"
         class="btn btn-primary mb-3"
     >
         Nuevo estudiante
@@ -94,7 +94,7 @@
                     <td>
 
                         <img
-                            src="../../imagenes/<?php echo htmlspecialchars($estudiante->getFoto()); ?>"
+                            src="imagenes/<?php echo htmlspecialchars($estudiante->getFoto()); ?>"
                             width="100"
                             height="100"
                             style="object-fit: cover;"
@@ -106,7 +106,7 @@
                     <td>
 
                         <a
-                            href="controlador_estudiantes.php?accion=editar&id=<?php echo $estudiante->getId(); ?>"
+                            href="?controlador=estudiantes&accion=editar&id=<?php echo $estudiante->getId(); ?>"
                             class="btn btn-warning btn-sm"
                         >
                             Editar
@@ -114,7 +114,7 @@
 
 
                         <a
-                            href="controlador_estudiantes.php?accion=eliminar&id=<?php echo $estudiante->getId(); ?>"
+                            href="?controlador=estudiantes&accion=eliminar&id=<?php echo $estudiante->getId(); ?>"
                             class="btn btn-danger btn-sm"
                             onclick="return confirm('¿Está seguro de eliminar este estudiante?');"
                         >

@@ -1,28 +1,18 @@
 <?php
 
-require_once "../modelos/Estudiantes.php";
-require_once "../modelos/BD.php";
-require_once "../modelos/DetalleMatricula.php";
-require_once "../modelos/Matricula.php";
-require_once "../modelos/Curso.php";
-require_once "../modelos/Profesor.php";
-require_once "../modelos/Usuario.php";
-require_once "../modelos/Administrador.php";
+require_once __DIR__ . "/../modelos/Estudiantes.php";
 
 
 class ControladorEstudiantes
 {
-
-
     public function inicio()
     {
         $estudiante = new Estudiante();
 
         $estudiantes = $estudiante->consultarTodos();
 
-        require_once "../vistas/estudiantes/inicio.php";
+        require_once __DIR__ . "/../vistas/estudiantes/inicio.php";
     }
-
 
 
     public function crear()
@@ -35,39 +25,27 @@ class ControladorEstudiantes
             $telefono = $_POST['telefono'];
             $email = $_POST['email'];
 
-
-
             if (
                 !isset($_FILES['foto']) ||
                 $_FILES['foto']['name'] == ''
             ) {
-
-
                 $nombreFoto = "sinfoto.png";
-
             } else {
-
 
                 $extension = pathinfo(
                     $_FILES['foto']['name'],
                     PATHINFO_EXTENSION
                 );
 
-                // Generar nombre único para la foto
-                $nombreFoto =
-                    time() . "_" . uniqid() . "." . $extension;
+                $nombreFoto = time() . "_" . uniqid() . "." . $extension;
 
-                // Ruta donde se guardará físicamente
-                $ruta = "../imagenes/" . $nombreFoto;
+                $ruta = __DIR__ . "/../imagenes/" . $nombreFoto;
 
-                // Mover archivo
                 move_uploaded_file(
                     $_FILES['foto']['tmp_name'],
                     $ruta
                 );
             }
-
-
 
             $estudiante = new Estudiante(
                 null,
@@ -79,29 +57,18 @@ class ControladorEstudiantes
                 $nombreFoto
             );
 
-
-
             $estudiante->insertar();
 
-
-            // Volver al inicio
-
-            header(
-                "Location: controlador_estudiantes.php?accion=inicio"
-            );
-
-            exit();
+            header("Location: index.php?controlador=estudiantes&accion=inicio");
+exit();
         }
 
-
-        require_once "../vistas/estudiantes/crear.php";
+        require_once __DIR__ . "/../vistas/estudiantes/crear.php";
     }
-
 
 
     public function editar()
     {
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $id = $_POST['id'];
@@ -111,31 +78,24 @@ class ControladorEstudiantes
             $telefono = $_POST['telefono'];
             $email = $_POST['email'];
 
-
-
             if (
                 isset($_FILES['foto']) &&
                 $_FILES['foto']['name'] != ''
             ) {
-
 
                 $extension = pathinfo(
                     $_FILES['foto']['name'],
                     PATHINFO_EXTENSION
                 );
 
-                $nombreFoto =
-                    time() . "_" . uniqid() . "." . $extension;
+                $nombreFoto = time() . "_" . uniqid() . "." . $extension;
 
-                $ruta = "../imagenes/" . $nombreFoto;
+                $ruta = __DIR__ . "/../imagenes/" . $nombreFoto;
 
                 move_uploaded_file(
                     $_FILES['foto']['tmp_name'],
                     $ruta
                 );
-
-
-                // Crear objeto incluyendo foto
 
                 $estudiante = new Estudiante(
                     $id,
@@ -147,15 +107,10 @@ class ControladorEstudiantes
                     $nombreFoto
                 );
 
-
-                // true = actualizar también foto
-
                 $estudiante->actualizar(true);
 
             } else {
 
-
-                // Crear objeto sin foto
                 $estudiante = new Estudiante(
                     $id,
                     $nombres,
@@ -165,21 +120,12 @@ class ControladorEstudiantes
                     $email
                 );
 
-
-                // false = NO tocar la columna foto
-
                 $estudiante->actualizar(false);
             }
 
-
-            header(
-                "Location: controlador_estudiantes.php?accion=inicio"
-            );
-
-            exit();
+            header("Location: index.php?controlador=estudiantes&accion=inicio");
+exit();
         }
-
-
 
 
         $id = $_GET['id'];
@@ -189,13 +135,10 @@ class ControladorEstudiantes
         $sql = "SELECT * FROM estudiantes WHERE id = :id";
 
         $consulta = $conexion->prepare($sql);
-
         $consulta->bindParam(':id', $id);
-
         $consulta->execute();
 
         $fila = $consulta->fetch(PDO::FETCH_ASSOC);
-
 
         $estudiante = new Estudiante(
             $fila['id'],
@@ -207,10 +150,8 @@ class ControladorEstudiantes
             $fila['foto']
         );
 
-
-        require_once "../vistas/estudiantes/editar.php";
+        require_once __DIR__ . "/../vistas/estudiantes/editar.php";
     }
-
 
 
     public function eliminar()
@@ -223,44 +164,9 @@ class ControladorEstudiantes
 
         $estudiante->eliminar();
 
-
-        header(
-            "Location: controlador_estudiantes.php?accion=inicio"
-        );
-
-        exit();
+        header("Location: index.php?controlador=estudiantes&accion=inicio");
+exit();
     }
 }
 
 
-
-
-$controlador = new ControladorEstudiantes();
-
-$accion = isset($_GET['accion'])
-    ? $_GET['accion']
-    : 'inicio';
-
-
-switch ($accion) {
-
-    case 'inicio':
-        $controlador->inicio();
-        break;
-
-    case 'crear':
-        $controlador->crear();
-        break;
-
-    case 'editar':
-        $controlador->editar();
-        break;
-
-    case 'eliminar':
-        $controlador->eliminar();
-        break;
-
-    default:
-        $controlador->inicio();
-        break;
-}

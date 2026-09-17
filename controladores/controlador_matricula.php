@@ -36,7 +36,7 @@ class ControladorMatricula {
             );
         }
  
-        require_once("./vistas/matricula/inicio.php");
+        require_once __DIR__ . "/../vistas/matricula/inicio.php";
     }
  
     public function crear()
@@ -116,7 +116,7 @@ class ControladorMatricula {
                 );
             }
  
-            require_once("./vistas/matricula/crear.php");
+            require_once __DIR__ . "/../vistas/matricula/crear.php";
         }
     }
  

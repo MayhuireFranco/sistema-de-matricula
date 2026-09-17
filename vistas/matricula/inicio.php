@@ -24,8 +24,7 @@
                     <td><?php echo $matricula->getTotalCreditos(); ?></td>
                     <td><?php echo $matricula->getEstado(); ?></td>
                     <td>
-                        <a href="?controlador=matricula&accion=eliminar
-                                  &id=<?php echo $matricula->getId(); ?>"
+                        <a href="?controlador=matricula&accion=eliminar&id=<?php echo $matricula->getId(); ?>"
                            class="btn btn-danger btn-sm"
                            onclick="return confirm(
                                '¿Seguro que deseas eliminar esta matrícula?');">

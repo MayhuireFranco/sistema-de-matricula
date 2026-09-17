@@ -1,7 +1,7 @@
 <?php
 
-require_once("./modelos/Profesores.php");
-require_once("./conexion.php");
+require_once __DIR__ . "/../modelos/Profesores.php";
+require_once __DIR__ . "/../modelos/BD.php";
  
 class ControladorProfesores {
  
@@ -16,7 +16,7 @@ class ControladorProfesores {
             $listaProfesores[] = new Profesores($fila["id"], $fila["nombres"], $fila["apellidos"], $fila["especialidad"]);
         }
  
-        require_once("./vistas/profesores/inicio.php");
+        require_once __DIR__ . "/../vistas/profesores/inicio.php";
     }
  
     public function crear()
@@ -28,7 +28,7 @@ class ControladorProfesores {
  
             header("Location: ./?controlador=profesores&accion=inicio");
         } else {
-            require_once("./vistas/profesores/crear.php");
+            require_once __DIR__ . "/../vistas/profesores/crear.php";
         }
     }
  
@@ -47,7 +47,7 @@ class ControladorProfesores {
             $fila = $consulta->fetch(PDO::FETCH_ASSOC);
             $profesor = new Profesores($fila["id"], $fila["nombres"], $fila["apellidos"], $fila["especialidad"]);
  
-            require_once("./vistas/profesores/editar.php");
+            require_once __DIR__ . "/../vistas/profesores/editar.php";
         }
     }
  

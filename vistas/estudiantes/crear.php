@@ -24,11 +24,9 @@
 
 
     <form
-        action="controlador_estudiantes.php?accion=crear"
-        method="POST"
-        enctype="multipart/form-data"
-        onsubmit="return validarFormulario();"
-    >
+        action="?controlador=estudiantes&accion=crear" 
+        method="POST" 
+        enctype="multipart/form-data" onsubmit="return validarFormulario();">
 
 
         <!-- NOMBRES -->
@@ -149,7 +147,7 @@
 
 
         <a
-            href="controlador_estudiantes.php?accion=inicio"
+            href="../../index.php?controlador=estudiantes&accion=inicio"
             class="btn btn-secondary"
         >
             Cancelar

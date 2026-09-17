@@ -1,15 +1,7 @@
 <?php
-include("./vistas/template/header.php");
+include __DIR__ . '/template/header.php';
 ?>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <?php include_once("./ruteador.php"); ?>
-        </div>
-    </div>
+<div class="container-fluid px-3 px-md-4 py-4">
+    <?php include __DIR__ . '/../ruteador.php'; ?>
 </div>
-
-<?php
-include("./vistas/template/footer.php");
-?>
+<?php include __DIR__ . '/template/footer.php'; ?>

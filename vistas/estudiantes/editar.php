@@ -24,7 +24,7 @@
 
 
     <form
-        action="controlador_estudiantes.php?accion=editar"
+        action="?controlador=estudiantes&accion=editar"
         method="POST"
         enctype="multipart/form-data"
         onsubmit="return validarFormulario();"
@@ -156,7 +156,7 @@
             <br>
 
             <img
-                src="../../imagenes/<?php echo htmlspecialchars($estudiante->getFoto()); ?>"
+                src="imagenes/<?php echo htmlspecialchars($estudiante->getFoto()); ?>"
                 width="120"
                 height="120"
                 style="object-fit: cover;"
@@ -199,7 +199,7 @@
 
 
         <a
-            href="controlador_estudiantes.php?accion=inicio"
+            href="?controlador=estudiantes&accion=inicio"
             class="btn btn-secondary"
         >
             Cancelar
